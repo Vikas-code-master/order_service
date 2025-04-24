@@ -1,38 +1,35 @@
 package com.vg.orderservice.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 @Data
-@Document(collection = "orders")
+@Entity
+@Table(name = "orders")
 public class Order {
     @Id
-    private String id;
-    private String customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long customerId;
     private List<String> productIds;
     private double totalAmount;
     private LocalDateTime orderDate;
     private String status; // e.g., "PLACED", "SHIPPED", "DELIVERED"
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

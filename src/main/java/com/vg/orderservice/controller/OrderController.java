@@ -21,17 +21,17 @@ public class OrderController {
     }
 
     @GetMapping("/customer/{customerId}")
-    public List<Order> getOrdersByCustomer(@PathVariable String customerId) {
+    public List<Order> getOrdersByCustomer(@PathVariable Long customerId) {
         return orderService.getOrdersByCustomerId(customerId);
     }
 
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable String id) {
+    public Order getOrderById(@PathVariable int id) {
         return orderService.getOrderById(id);
     }
 
     @PatchMapping("/{id}/status")
-    public Order updateOrderStatus(@PathVariable String id, @RequestParam String status) {
+    public Order updateOrderStatus(@PathVariable int id, @RequestParam String status) {
         return orderService.updateOrderStatus(id, status);
     }
 }

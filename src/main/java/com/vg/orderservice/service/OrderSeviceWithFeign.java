@@ -28,7 +28,7 @@ public class OrderSeviceWithFeign {
         return orderRepository.save(order);
     }
 
-    public List<Order> getOrdersByCustomerId(String customerId) {
+    public List<Order> getOrdersByCustomerId(Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 }

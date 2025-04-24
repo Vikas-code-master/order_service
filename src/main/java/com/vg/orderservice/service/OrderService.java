@@ -21,17 +21,17 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public List<Order> getOrdersByCustomerId(String customerId) {
+    public List<Order> getOrdersByCustomerId(Long customerId) {
         return orderRepository.findByCustomerId(customerId);
     }
 
-    public Order getOrderById(String orderId) {
-        return orderRepository.findById(orderId).orElseThrow(() ->
+    public Order getOrderById(int orderId) {
+        return orderRepository.findById(Long.valueOf(orderId)).orElseThrow(() ->
                 new RuntimeException("Order not found")
         );
     }
 
-    public Order updateOrderStatus(String orderId, String status) {
+    public Order updateOrderStatus(int orderId, String status) {
         Order order = getOrderById(orderId);
         order.setStatus(status);
         return orderRepository.save(order);
