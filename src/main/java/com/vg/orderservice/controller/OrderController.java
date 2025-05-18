@@ -2,6 +2,7 @@ package com.vg.orderservice.controller;
 
 import com.vg.orderservice.model.Order;
 import com.vg.orderservice.service.OrderService;
+import com.vg.orderservice.service.OrderSeviceWithFeign;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderSeviceWithFeign orderSeviceWithFeign;
 
     @PostMapping("/create")
     public Order placeOrder(@RequestBody Order order) {
@@ -33,6 +36,10 @@ public class OrderController {
     @PatchMapping("/{id}/status")
     public Order updateOrderStatus(@PathVariable int id, @RequestParam String status) {
         return orderService.updateOrderStatus(id, status);
+    }
+    @GetMapping("/{id}/product/{productId}")
+    public Object getProductWithOrderDetails(@PathVariable int id, @PathVariable int productId) {
+        return orderSeviceWithFeign.getProductWithOrderDetails(id, productId);
     }
 }
 
