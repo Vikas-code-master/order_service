@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-app-ingress
-  namespace: default
+  name: order-ingress
+  namespace: order-service
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: myapp.vkg.com
+    - host: myapp.example.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: my-app-service
+                name: order-service-chart
                 port:
-                  number: 8080
+                  number: 8081  # Your service port
